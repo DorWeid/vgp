@@ -107,8 +107,7 @@ class Proxy extends Component {
     }
 
     const proxy = startProxy({ 
-      port: this.state.port, 
-      commands: {'command': 'ls', 'args': ['-l', '/']},
+      commands: {'command': 'python', 'args': [`${this.state.gesherPath}/ServerEcho.py`, '-proto', 'http', '-p', this.state.port, '-f']},
       onStderr: this.onStderr, 
       onClose: this.onProxyClose, 
       onStdout: this.onStdout 

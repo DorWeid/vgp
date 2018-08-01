@@ -8,12 +8,11 @@ export const isPortAvailable = port => new Promise((resolve, reject) => {
   oReq.send();
 });
 
-export const startProxy = ({ commands, port, onStdout, onStderr, onClose }) => {
+export const startProxy = ({ commands, onStdout, onStderr, onClose }) => {
   const { spawn } = electron.remote.require('child_process');
   
-  const commandArgs = commands || {comman: 'python', args: ['gesher', '-c', port]};
-  const proxy = spawn(commandArgs.command, commandArgs.args);
-
+  const proxy = spawn(commands.command, commands.args);
+  
   proxy.stdout.on('data', onStdout);
   proxy.stderr.on('data', onStderr);
   proxy.on('close', onClose);
