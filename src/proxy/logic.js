@@ -1,9 +1,11 @@
 const electron = window.require('electron');
 
-// FIXME: Electron doesnt like fetch. Find a different way for this (perhaps axios/XHR?)
 export const isPortAvailable = port => new Promise((resolve, reject) => {
-  resolve(true);
-  // fetch(`http://localhost:${port}`).then(() => resolve(false)).catch(() => resolve(true));
+  const oReq = new XMLHttpRequest();
+  oReq.open("GET", `http://localhost:${port}`);
+  oReq.addEventListener("load", () => {resolve(false);});
+  oReq.addEventListener("error", () => {resolve(true);});
+  oReq.send();
 });
 
 export const startProxy = ({ commands, port, onStdout, onStderr, onClose }) => {
