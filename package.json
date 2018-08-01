@@ -1,0 +1,43 @@
+{
+  "name": "gesher-app",
+  "description": "VGP",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "chokidar": "^2.0.4",
+    "del": "^3.0.0",
+    "react": "^16.4.0",
+    "react-awesome-button": "^4.2.1",
+    "react-dom": "^16.4.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "rimraf": "^2.6.2"
+  },
+  "build": {
+    "appId": "com.example.electron-cra",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron-dev": "cross-env ELECTRON_START_URL=http://localhost:3000 electron .",
+    "electron-pack": "build -c.extraMetadata.main=build/electron.js",
+    "preelectron-pack": "yarn build",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "electron": "^2.0.2",
+    "electron-builder": "^20.26.1"
+  },
+  "main": "public/electron.js",
+  "homepage": "./"
+}
