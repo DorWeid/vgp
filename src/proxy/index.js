@@ -364,7 +364,7 @@ class Proxy extends Component {
   render() {
     return (
       <div className="Proxy-body">
-        <div className="Proxy-status">
+        {!this.state.proxy && <div className="Proxy-status">
           <table style={{borderSpacing: '1em'}}>
             <tbody>
               <tr>
@@ -393,7 +393,7 @@ class Proxy extends Component {
               </tr>
             </tbody>
           </table>
-        </div>
+        </div>}
         <div className="Proxy-terminal">
           <AwesomeButton style={{width: '70%'}} type="primary" action={this.toggleProxy} bubbles disabled={!this.state.isGesherAvailable || !this.state.isPortAvailable}>
             {this.state.proxy ? 'Stop Proxy' : 'Start Proxy'}
@@ -402,7 +402,7 @@ class Proxy extends Component {
           <br />
           <textarea readOnly="readOnly" style={{height: '40vh', width: '90%'}} cols={50} value={this.state.proxyListenerLog} />
         </div>
-        <div className="Proxy-logs" style={{border: '1px solid grey'}}>
+        <div className="Proxy-logs" style={{border: '1px solid grey', width: this.state.proxy ? '70%' : '32%'}}>
           <h3>Logs</h3>
           {this.state.isGesherAvailable ? <div style={{overflowY: 'scroll', height: '40vh'}} dangerouslySetInnerHTML={this.state.logs} /> : <div>No logs to show yet...</div>}
         </div>

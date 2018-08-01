@@ -1,5 +1,6 @@
 const electron = window.require('electron');
 
+// FIXME: Electron doesnt like fetch. Find a different way for this (perhaps axios/XHR?)
 export const isPortAvailable = port => new Promise((resolve, reject) => {
   resolve(true);
   // fetch(`http://localhost:${port}`).then(() => resolve(false)).catch(() => resolve(true));
