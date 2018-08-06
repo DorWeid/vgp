@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-// import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import './index.css';
 import 'react-awesome-button/dist/themes/theme-two.css';
 
 ReactDOM.render(<App/>, document.getElementById('root'));
+
+// TODO: This currently doesn't work when compiling electron (and it probably shouldnt work anyway)
+//       Just remove this sometime
+// import registerServiceWorker from './registerServiceWorker';
 // registerServiceWorker();

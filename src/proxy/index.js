@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { AwesomeButton } from 'react-awesome-button';
 import { startProxy, isPortAvailable, searchForGesher, openFileDialog, searchForXsd, uploadXsd, uploadJson, searchForJson, searchForHttp, uploadHttp, searchForProxyConf, uploadProxyConf, createMarkup, initWatcher } from './logic';
 import './index.css'
-import { create } from 'domain';
 
 class Proxy extends Component {
   constructor() {
@@ -107,7 +106,14 @@ class Proxy extends Component {
     }
 
     const proxy = startProxy({ 
-      commands: {'command': 'python', 'args': [`${this.state.gesherPath}/ServerEcho.py`, '-proto', 'http', '-p', this.state.port, '-f']},
+      commands: {'command': 'python', 'args': [
+        `${this.state.gesherPath}/ServerEcho.py`,
+        '-proto', 
+        'http', 
+        '-p', 
+        this.state.proxyPort, 
+        '-f'
+      ]},
       onStderr: this.onStderr, 
       onClose: this.onProxyClose, 
       onStdout: this.onStdout 
@@ -403,7 +409,7 @@ class Proxy extends Component {
         </div>
         <div className="Proxy-logs" style={{border: '1px solid grey', width: this.state.proxy ? '70%' : '32%'}}>
           <h3>Logs</h3>
-          {this.state.isGesherAvailable ? <div style={{overflowY: 'scroll', height: '40vh'}} dangerouslySetInnerHTML={this.state.logs} /> : <div>No logs to show yet...</div>}
+          {this.state.isGesherAvailable ? <div style={{overflowY: 'scroll', height: '40vh'}} dangerouslySetInnerHTML={{__html: this.state.logs}} /> : <div>No logs to show yet...</div>}
         </div>
       </div>
     )

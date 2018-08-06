@@ -248,7 +248,7 @@ export const createMarkup = (gesherDirectory) => {
   try {
     const logsPath = path.join(gesherDirectory, 'logs', 'log.html');
     const logsFile = fs.readFileSync(logsPath, {encoding: 'utf8'});      
-    return {__html: `<table>${logsFile}</table>`}
+    return `<table>${logsFile}</table>`;
   } catch (e) {
     throw new Error('Could not read log.html file.');
   }
